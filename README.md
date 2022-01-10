@@ -21,14 +21,27 @@ simple and concice as possible.
 * No optional parameters
 * Count of option occurrences
 * Short usage message
-* Support "\-\-" argument to indicates the end of the options
+* Support `--` argument to indicates the end of the options
+* Proper separation of option parsing and handling
 
 
  Usage
 ------------------------------------------------------------------------
 
-Add the content of [petopts.sh](petopts.sh) to the top of your script
-and change the 3 variables at the top. The variables are:
+### tl;dr
+
+* Copy the content of [petopts.sh](petopts.sh) to the top of a script
+* Change `options`, `usage` and `version`
+* Write code to handle the parsed options
+
+Given `options="a b: c"`, petopts would set `opt_a`, `opt_b` and `opt_c`
+to the amount each of the options are supplied (empty if 0). `arg_b`
+would contain the option argument of the -b option.
+
+### Details
+
+[petopts.sh](petopts.sh) is supposed to be used at the top of a script.
+The following 3 variables have to be adapted:
 
 `options`: A string containing the space separated list of alphanumeric
 option characters. If a character is followed by a \<colon>, the option
