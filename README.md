@@ -7,22 +7,22 @@ Portable and simple option parsing, powered by getopts(1p).
 
 Unlike most (bash) option parser frameworks, where the complexity can
 easily dwarf that of the actual script, petopts is purposefully made as
-simple and concice as possible.
+simple and concise as possible.
 
 
  Features
 ------------------------------------------------------------------------
 
-* Very minimal
-* Simple to use
+* Easy to use
+* Minimal/simple
 * Portable
-* POSIX utility conventions compliance
 * No GNU style long options
 * No optional parameters
 * Count of option occurrences
 * Short usage message
 * Support `--` argument to indicates the end of the options
 * Proper separation of option parsing and handling
+* POSIX utility conventions compliance
 
 
  Usage
@@ -30,13 +30,14 @@ simple and concice as possible.
 
 ### tl;dr
 
-* Copy the content of [petopts.sh](petopts.sh) to the top of a script
-* Change `options`, `usage` and `version`
-* Write code to handle the parsed options
+1. Copy the content of [petopts.sh](petopts.sh) to the top of a script
+2. Change `options`, `usage` and `version`
+3. Handle the parsed options and remaining operands
 
 Given `options="a b: c"`, petopts would set `opt_a`, `opt_b` and `opt_c`
 to the amount each of the options are supplied (empty if 0). `arg_b`
 would contain the option argument of the -b option.
+
 
 ### Details
 
@@ -54,9 +55,9 @@ shall be expected to have an argument.
 For each option in the `options` variable, petopts will set
 corresponding variables in the form of `opt_*` and `arg_*`, where `*` is
 the option character. The `opt_*` variables will hold the number of
-occurences of the options (unset if an option does not occur), while the
-`arg_*` variables store the option arguments (empty if an option has no
-option argument).
+occurrences of the options (unset if an option does not occur), while
+the `arg_*` variables store the option arguments (empty if an option has
+no option argument).
 
 After parsing the options, the positional parameters are shifted until
 only operands remain.
