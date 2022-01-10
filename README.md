@@ -54,8 +54,7 @@ do:
 ```sh
 [ "$opt_h" ] && usage
 [ "$opt_v" ] && version
-[ "$opt_a" ] &&
-	printf 'Option a present with argument: %s\n' "$arg_a"
+[ "$opt_a" ] && printf 'Option a present with argument: %s\n' "$arg_a"
 ```
 
 petopts comes with the following functions:
