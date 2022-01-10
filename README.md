@@ -48,8 +48,8 @@ option argument).
 After parsing the options, the positional parameters are shifted until
 only operands remain.
 
-For example, to conditionally do something with the option 'a', we could
-do:
+For example, to conditionally do something with the option 'a', 'h' and
+'v', we could do:
 
 ```sh
 [ "$opt_h" ] && usage
@@ -57,7 +57,7 @@ do:
 [ "$opt_a" ] && printf 'Option a present with argument: %s\n' "$arg_a"
 ```
 
-petopts comes with the following functions:
+petopts provides the following functions:
 
 `die()`: Prints its arguments to stderr and exits the script with status
 1.
