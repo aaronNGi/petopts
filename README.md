@@ -73,8 +73,10 @@ For example, to conditionally do something with the option 'a', 'h' and
 
 petopts provides the following functions:
 
-`die()`: Prints its arguments to stderr and exits the script with status
-1.
+`die()`: Prints its arguments using `warn()` and exits the script with
+the exit status given by the first argument.
+
+`warn()`: Prints its arguments to stderr, prefixed by the program name.
 
 `usage()`: Prints the content of the `usage` variable and exits the
 script with status 0.

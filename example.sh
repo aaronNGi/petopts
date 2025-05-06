@@ -11,7 +11,7 @@ main() {
 	[ "$opt_v" ] && version
 	[ "$opt_w" ] &&
 		case $arg_w in *[!0-9]*)
-			die "invalid width: $arg_w"
+			die 1 "invalid width: $arg_w"
 		esac
 
 	# Both options enable line numbers.
@@ -29,10 +29,10 @@ main() {
 			file=/dev/stdin
 
 		! [ -e "$file" ] &&
-			die "$file: No such file or directory"
+			die 2 "$file: No such file or directory"
 
 		! [ -r "$file" ] &&
-			die "$file: Permission denied"
+			die 3 "$file: Permission denied"
 
 		ln=1
 
@@ -48,15 +48,16 @@ main() {
 	done
 }
 
-die() { printf '%s: %s\n' "${0##*/}" "$*" >&2; exit 1; }
+die() { rc=$1; shift; warn "$@"; exit "$rc"; }
+warn() { printf '%s: %s\n' "${0##*/}" "$*" >&2; }
 usage() { printf 'usage: %s %s\n' "${0##*/}" "$usage"; exit; }
 version() { printf '%s\n' "$version"; exit; }
 
 for o in $options; do unset "opt_${o%:}"; done
 
 while getopts ":$options" o; do case $o in
-	:) die "option requires an argument -- $OPTARG" ;;
-	\?) die "unknown option -- $OPTARG" ;;
+	:) die 1 "option requires an argument -- $OPTARG" ;;
+	\?) die 1 "unknown option -- $OPTARG" ;;
 	*) eval "opt_$o=\$((opt_$o + 1)) arg_$o=\$OPTARG" ;;
 esac; done; shift "$((OPTIND - 1))"
 
