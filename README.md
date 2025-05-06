@@ -86,6 +86,11 @@ script with status 0.
 
 For a complete script using petopts, check [example.sh](example.sh).
 
+#### Bash version
+
+Instead of using `opt_*` and `arg_*`, the bash version sets the
+associative arrays `opt` and `arg`, using the option characters as keys.
+
 
  Usage of eval
 ------------------------------------------------------------------------
